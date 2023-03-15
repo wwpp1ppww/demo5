@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
+    <title>Ингредиенты</title>
 </head>
 <body>
 
-<h1>Ингредиенты</h1>
+<h2>Ингредиенты</h2>
+
+<form th:method="GET" th:action="@{/ingredients/new}">
+<input type="submit" value="Create ingredient"/>
+</form>
+
+<div th:each="ingredient : ${ingredients}">
+    <a th:href="@{/ingredients/{id}(id=${ingredient.getId()})}" th:text="${ingredient.getName()}">user</a>
+</div>
 
 </body>
 </html>

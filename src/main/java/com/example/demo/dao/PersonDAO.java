@@ -1,12 +1,11 @@
 package com.example.demo.dao;
 
+import com.example.demo.mapper.PersonMapper;
 import com.example.demo.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Component

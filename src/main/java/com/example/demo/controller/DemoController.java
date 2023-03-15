@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dao.IngredientDAO;
 import com.example.demo.dao.PersonDAO;
 import com.example.demo.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DemoController {
 
     private final PersonDAO personDAO;
+
     @Autowired
     public DemoController(PersonDAO personDAO) {
         this.personDAO = personDAO;
@@ -28,10 +30,12 @@ public class DemoController {
         return "recipes";
     }
 
-    @GetMapping("/ingredients")
-    public String Ingredients() {
-        return "ingredients";
-    }
+//    @GetMapping("/ingredients")
+//    public String Ingredients(Model model) {
+//        //model.addAttribute("people", IngredientDAO.index());
+//        //return "people";
+//        return "ingredients";
+//    }
 
     @GetMapping("/people")
     public String index(Model model) {

@@ -1,4 +1,4 @@
-package com.example.demo.dao;
+package com.example.demo.mapper;
 
 import com.example.demo.models.Person;
 import org.springframework.jdbc.core.RowMapper;
