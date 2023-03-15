@@ -18,9 +18,19 @@ public class DemoController {
         this.personDAO = personDAO;
     }
 
-    @GetMapping("/hello")
+    @GetMapping("/")
     public String Hello() {
-        return "hello_w";
+        return "hello";
+    }
+
+    @GetMapping("/recipes")
+    public String Recipes() {
+        return "recipes";
+    }
+
+    @GetMapping("/ingredients")
+    public String Ingredients() {
+        return "ingredients";
     }
 
     @GetMapping("/people")
