@@ -8,8 +8,14 @@
 
 <h2>Ингредиент:</h2>
 
-<p th:text="${ingredient.getId()}">VALUE</p>
-<p th:text="${ingredient.getName()}">VALUE</p>
+<form th:method="POST" th:action="@{/ingredients/{id}(id=${ingredient.getId()})}" th:object="${ingredient}">
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <input type="submit" value="Save!"/>
+</form>
+
+<a th:text="${source}"></a>
 
 <form th:method="GET" th:action="@{/ingredients}">
     <input type="submit" value="Return"/>

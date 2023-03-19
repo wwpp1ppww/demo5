@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class IngredientsController {
@@ -31,9 +29,12 @@ public class IngredientsController {
     }
 
     @PostMapping("/ingredients")
-    public String save(@ModelAttribute("ingredient") Ingredient ingredient) {
-        ingredientDAO.save(ingredient);
-        return "redirect:/ingredients";
+    public String save(@ModelAttribute("ingredient") Ingredient ingredient, Model model) {
+        Ingredient ing = ingredientDAO.save(ingredient);
+        model.addAttribute("ingredient", ing);
+        model.addAttribute("save","success");
+        String s = "redirect:/ingredients/" + ing.getId() + "?source=create";
+        return s;
     }
 
     @GetMapping ("/ingredients/new")
@@ -42,10 +43,16 @@ public class IngredientsController {
     }
 
     @GetMapping("/ingredients/{id}")
-    public String Ingredient(@PathVariable("id") int id, Model model) {
+    public String ShowIngredient(@PathVariable("id") int id, Model model, @RequestParam(value = "source", required = false) String source) {
         model.addAttribute("ingredient", ingredientDAO.show(id));
+        model.addAttribute("source", source == null ? "": source);
         return "ingredient";
     }
 
-
+    @PostMapping("/ingredients/{id}")
+    public String UpdateIngredient(@ModelAttribute("ingredient") Ingredient ingredient, Model model) {
+        ingredientDAO.update(ingredient);
+        String s = "redirect:/ingredients/" + ingredient.getId() + "?source=change";
+        return s;
+    }
 }
